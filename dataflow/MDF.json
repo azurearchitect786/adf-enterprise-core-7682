@@ -1,0 +1,37 @@
+{
+	"name": "MDF",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CSV",
+						"type": "DatasetReference"
+					},
+					"name": "BronzePayload"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "SplitEvenOdd"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          userId as string,",
+				"          id as string,",
+				"          title as string,",
+				"          body as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     multiLineRow: true) ~> BronzePayload",
+				"BronzePayload split(toInteger(id) % 2 == 0,",
+				"     disjoint: false) ~> SplitEvenOdd@(Even, Odd)"
+			]
+		}
+	}
+}

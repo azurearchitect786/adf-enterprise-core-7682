@@ -1,0 +1,40 @@
+{
+	"name": "CSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS_Gen2_Raw",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "06c3df27-7535-4a75-b6b5-b1c56ae9ba5e.txt",
+				"fileSystem": "bronze"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "userId",
+				"type": "String"
+			},
+			{
+				"name": "id",
+				"type": "String"
+			},
+			{
+				"name": "title",
+				"type": "String"
+			},
+			{
+				"name": "body",
+				"type": "String"
+			}
+		]
+	}
+}
