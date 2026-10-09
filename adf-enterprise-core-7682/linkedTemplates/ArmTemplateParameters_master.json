@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "adf-enterprise-core-7682"
 		},
+		"LS_CICD_accountKey": {
+			"value": ""
+		},
 		"LS_ADLS_Gen2_Raw_properties_typeProperties_url": {
 			"value": "https://sadlsextng7682.dfs.core.windows.net/"
 		},
@@ -49,6 +52,9 @@
 		},
 		"LS_AzureSQL_Sink_properties_typeProperties_database": {
 			"value": "sqldb-enterprise-sink"
+		},
+		"LS_CICD_properties_typeProperties_url": {
+			"value": "https://sadlsextng7682.dfs.core.windows.net/"
 		},
 		"LS_CosmosDb_Parameterized_properties_typeProperties_accountEndpoint": {
 			"value": "@{concat('https://',linkedService().CosmosAccountName,'.documents.azure.com:443/')}"

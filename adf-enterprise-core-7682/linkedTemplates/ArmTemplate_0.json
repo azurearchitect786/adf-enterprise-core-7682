@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-enterprise-core-7682"
 		},
+		"LS_CICD_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_CICD'"
+		},
 		"LS_ADLS_Gen2_Raw_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://sadlsextng7682.dfs.core.windows.net/"
@@ -50,6 +54,10 @@
 		"LS_AzureSQL_Sink_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "sqldb-enterprise-sink"
+		},
+		"LS_CICD_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadlsextng7682.dfs.core.windows.net/"
 		},
 		"LS_CosmosDb_Parameterized_properties_typeProperties_accountEndpoint": {
 			"type": "string",
@@ -188,6 +196,23 @@
 					"encrypt": "mandatory",
 					"trustServerCertificate": true,
 					"authenticationType": "SystemAssignedManagedIdentity"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_CICD')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_CICD_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_CICD_accountKey')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -595,58 +620,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_ADLS_Gen2_Raw')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_AzureSQL_Parameterized')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_AzureSQL_Parameterized",
-					"type": "LinkedServiceReference",
-					"parameters": {
-						"DBName": {
-							"value": "@dataset().ds_sql_dbname",
-							"type": "Expression"
-						},
-						"ServerName": {
-							"value": "@dataset().serverName",
-							"type": "Expression"
-						}
-					}
-				},
-				"parameters": {
-					"TableName": {
-						"type": "string"
-					},
-					"SchemaName": {
-						"type": "string",
-						"defaultValue": "dbo"
-					},
-					"ds_sql_dbname": {
-						"type": "string"
-					},
-					"serverName": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": {
-						"value": "@dataset().SchemaName",
-						"type": "Expression"
-					},
-					"table": {
-						"value": "@dataset().TableName",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSQL_Parameterized')]"
 			]
 		}
 	]
