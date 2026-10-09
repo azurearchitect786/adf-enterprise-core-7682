@@ -18,8 +18,37 @@
 					"method": "GET",
 					"url": "https://jsonplaceholder.typicode.com/posts"
 				}
+			},
+			{
+				"name": "Set_Response",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ReadPublicJSON",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "onlyjsoninterested",
+					"value": {
+						"value": "@activity('ReadPublicJSON').output.Response\r\n\r\n",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"onlyjsoninterested": {
+				"type": "Array"
+			}
+		},
 		"annotations": []
 	}
 }
