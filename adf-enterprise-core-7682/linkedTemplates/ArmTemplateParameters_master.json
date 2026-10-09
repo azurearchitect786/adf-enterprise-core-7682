@@ -8,6 +8,9 @@
 		"LS_CICD_accountKey": {
 			"value": ""
 		},
+		"LS_CICDel_accountKey": {
+			"value": ""
+		},
 		"LS_ADLS_Gen2_Raw_properties_typeProperties_url": {
 			"value": "https://sadlsextng7682.dfs.core.windows.net/"
 		},
@@ -67,6 +70,9 @@
 		},
 		"LS_Cosmos_Dynamic_properties_typeProperties_database": {
 			"value": "support_db"
+		},
+		"LS_CICDel_properties_typeProperties_url": {
+			"value": "https://sadlsextng7682.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""

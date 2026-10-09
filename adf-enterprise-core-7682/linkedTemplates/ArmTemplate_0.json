@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_CICD'"
 		},
+		"LS_CICDel_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_CICDel'"
+		},
 		"LS_ADLS_Gen2_Raw_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://sadlsextng7682.dfs.core.windows.net/"
@@ -74,6 +78,10 @@
 		"LS_Cosmos_Dynamic_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "support_db"
+		},
+		"LS_CICDel_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadlsextng7682.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -262,6 +270,23 @@
 			"properties": {
 				"type": "SelfHosted",
 				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_CICDel')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_CICDel_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_CICDel_accountKey')]"
+					}
+				}
 			},
 			"dependsOn": []
 		},
@@ -594,29 +619,6 @@
 					"quoteChar": "\""
 				},
 				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_ADLS_Gen2_Raw')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_ADLS_Signal_File')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_ADLS_Gen2_Raw",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "ready.txt",
-						"fileSystem": "raw-zone"
-					}
-				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_ADLS_Gen2_Raw')]"

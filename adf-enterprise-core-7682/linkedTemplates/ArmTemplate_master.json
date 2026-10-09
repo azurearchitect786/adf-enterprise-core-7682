@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_CICD'"
 		},
+		"LS_CICDel_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_CICDel'"
+		},
 		"LS_ADLS_Gen2_Raw_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://sadlsextng7682.dfs.core.windows.net/"
@@ -91,6 +95,10 @@
 			"type": "string",
 			"defaultValue": "support_db"
 		},
+		"LS_CICDel_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadlsextng7682.dfs.core.windows.net/"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -120,6 +128,9 @@
 					},
 					"LS_CICD_accountKey": {
 						"value": "[parameters('LS_CICD_accountKey')]"
+					},
+					"LS_CICDel_accountKey": {
+						"value": "[parameters('LS_CICDel_accountKey')]"
 					},
 					"LS_ADLS_Gen2_Raw_properties_typeProperties_url": {
 						"value": "[parameters('LS_ADLS_Gen2_Raw_properties_typeProperties_url')]"
@@ -168,6 +179,9 @@
 					},
 					"LS_Cosmos_Dynamic_properties_typeProperties_database": {
 						"value": "[parameters('LS_Cosmos_Dynamic_properties_typeProperties_database')]"
+					},
+					"LS_CICDel_properties_typeProperties_url": {
+						"value": "[parameters('LS_CICDel_properties_typeProperties_url')]"
 					}
 				}
 			},
