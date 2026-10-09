@@ -1,0 +1,33 @@
+{
+	"name": "JsonPayload",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "APIServer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"userId": {
+					"type": "integer"
+				},
+				"id": {
+					"type": "integer"
+				},
+				"title": {
+					"type": "string"
+				},
+				"body": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
