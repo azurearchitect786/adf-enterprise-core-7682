@@ -46,7 +46,7 @@
 		],
 		"variables": {
 			"onlyjsoninterested": {
-				"type": "Array"
+				"type": "String"
 			}
 		},
 		"annotations": []
